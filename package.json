@@ -1,0 +1,12 @@
+{
+  "name": "ecommerce-inventory-microservice",
+  "version": "1.0.0",
+  "description": "Production-grade E-Commerce microservice with metric exposure for DevOps monitoring pipelines.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
