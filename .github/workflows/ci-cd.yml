@@ -1,4 +1,4 @@
-name: Inventory App CI
+name: Inventory App CI/CD
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
       - main
 
 jobs:
+
   test-and-build:
     runs-on: ubuntu-latest
 
@@ -30,3 +31,24 @@ jobs:
 
       - name: Verify Docker image
         run: docker images inventory-app
+
+
+  deploy:
+    name: Deploy to AWS EC2
+    needs: test-and-build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy application to EC2
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/inventory-order-management
+            git pull origin main
+            docker compose down
+            docker compose up -d --build
+            docker ps
