@@ -1,4 +1,4 @@
-name: Inventory App CI/CD
+name: Inventory App CI/CD - Final Test
 
 on:
   push:
