@@ -10,4 +10,4 @@ INSERT INTO inventory (id, name, stock, price) VALUES
 ('PROD-002', 'Mechanical Ergonomic Keyboard', 45, '$129'),
 ('PROD-003', 'UltraWide 4K Gaming Monitor', 12, '$499'),
 ('PROD-004', 'Smart Fitness Watch v2', 89, '$249')
-ON CONFLICT (id) DO NOTHING;
+ON CONFLICT (id) DO NOTHING;C:\Users\lenovo\inventory-order-management
