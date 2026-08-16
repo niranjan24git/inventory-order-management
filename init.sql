@@ -1,8 +1,12 @@
+﻿-- ============================================================
+-- INVENTORY TABLE
+-- ============================================================
+
 CREATE TABLE IF NOT EXISTS inventory (
-  id VARCHAR(20) PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  stock INTEGER NOT NULL,
-  price VARCHAR(20) NOT NULL
+    id VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    stock INTEGER NOT NULL,
+    price VARCHAR(20) NOT NULL
 );
 
 INSERT INTO inventory (id, name, stock, price) VALUES
@@ -10,4 +14,16 @@ INSERT INTO inventory (id, name, stock, price) VALUES
 ('PROD-002', 'Mechanical Ergonomic Keyboard', 45, '$129'),
 ('PROD-003', 'UltraWide 4K Gaming Monitor', 12, '$499'),
 ('PROD-004', 'Smart Fitness Watch v2', 89, '$249')
-ON CONFLICT (id) DO NOTHING;C:\Users\lenovo\inventory-order-management
+ON CONFLICT (id) DO NOTHING;
+
+-- ============================================================
+-- USERS TABLE
+-- ============================================================
+
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role VARCHAR(50) DEFAULT 'admin',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
